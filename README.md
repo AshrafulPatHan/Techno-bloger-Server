@@ -1,4 +1,4 @@
-# TechnoBloger-Server
+# pathan blogger Server
 
 This is the **server-side** application for the **TechnoBloger Website**, a platform for tech enthusiasts to explore, create, and manage blog posts. The backend is built with **Node.js** and **Express.js**, offering robust API endpoints to handle blog management, user authentication, and data storage.
 
