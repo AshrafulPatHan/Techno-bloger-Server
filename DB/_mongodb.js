@@ -18,7 +18,6 @@ async function connectDB() {
         
         const db = client.db("Pathan-Blogger");
         return {
-            // Mail: db.collection("Mail"), 
             User: db.collection('User'),
             Admin: db.collection('Admin'),
             Blog: db.collection('Blog'),
