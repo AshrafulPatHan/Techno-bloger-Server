@@ -46,10 +46,9 @@ public\
 - all user
 - user profile
 
-## dynamic data 
+## dynamic data
 - the user prosess data is dynimeckly lood 
 - after login user can see only dynimeck data
-
 
 ## static data
 - the unloged visitor see statick data on home page 
