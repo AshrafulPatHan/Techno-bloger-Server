@@ -4,10 +4,12 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const connectDB = require("./DB/_mongodb");
+const MongooseDB = require("./DB/_mongoose");
 const app = express();
 const PORT = process.env.PORT || 5022;
 
 
+MongooseDB()
 app.use(cors());
 app.use(express.json());
 
