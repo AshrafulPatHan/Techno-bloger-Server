@@ -5,18 +5,15 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const port = process.env.PORT || 5222;
 const app = express();
 const http = require('http');
-const userRoutes = require('./routes/user')
+
 
 app.use(cors());
 app.use(express.json());
 
-// new routes
-app.use('/users', userRoutes)
-
 
 
 app.get('/', (req, res) => {
-  res.send('Server is running in home')
+  res.send('Server is running in vartion 1.2')
 })
 
 app.listen(port, () => {
@@ -52,9 +49,7 @@ async function run() {
     const db = client.db('Assingment-11');
     const userCollection = db.collection('userData');
     const userDataCollection = db.collection('userLogData');
-    // wis list data
     const wicCollection = db.collection('watch');
-    // all data
     const onerCollection = db.collection('Mydata');
 
     // post user data
@@ -119,8 +114,6 @@ async function run() {
     });
 
     // ---------------- Patch -----//
-
-
     app.patch('/comant', async (req, res) => {
       const { Comment, username, userEmail, userphotoURL, _id } = req.body;
 
@@ -160,15 +153,16 @@ async function run() {
       }
     });
     // gat watchLists data
-    app.get('/watchListsdata', async (req, res) => {
+    app.post('/watchListsdata', async (req, res) => {
+      const sendEmail = req.body.email;
       try {
-        const cursor = wicCollection.find();
-        const result = await cursor.toArray();
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.send(result);
+        const cursor = wicCollection.find({userEmail: sendEmail});
+        const arraydata = await cursor.toArray();
+        // const result = arraydata.filter(user => user.userEmail === sendEmail );
+        res.send(arraydata);
       } catch (error) {
         console.error('Error retrieving data:', error);
-        res.status(500).send({ message: 'Internal Server Error' });
+        res.status(500).send({ message: `Internal Server Error ${error}` });
       }
     });
 
@@ -234,9 +228,6 @@ async function run() {
         res.status(500).send({ message: "Error deleting data" });
       }
     });
-
-
-
 
 
     // ------------------update---------//
