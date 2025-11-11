@@ -11,7 +11,6 @@ app.use(cors());
 app.use(express.json());
 
 
-
 app.get('/', (req, res) => {
   res.send('Server is running in vartion 1.2')
 })
@@ -97,7 +96,6 @@ async function run() {
       }
     });
 
-
     // post userData data
     app.post('/userData', async (req, res) => {
       const addatas = req.body;
@@ -156,7 +154,7 @@ async function run() {
     app.post('/watchListsdata', async (req, res) => {
       const sendEmail = req.body.email;
       try {
-        const cursor = wicCollection.find({userEmail: sendEmail});
+        const cursor = wicCollection.find({ userEmail: sendEmail });
         const arraydata = await cursor.toArray();
         // const result = arraydata.filter(user => user.userEmail === sendEmail );
         res.send(arraydata);
@@ -184,7 +182,7 @@ async function run() {
     app.get('/limited-data', async (req, res) => {
       const limit = parseInt(req.query.limit) || 4;
       try {
-        const cursor = onerCollection.find({}).sort({_id:-1}).limit(limit);
+        const cursor = onerCollection.find({}).sort({ _id: -1 }).limit(limit);
         const result = await cursor.toArray();
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.send(result);
