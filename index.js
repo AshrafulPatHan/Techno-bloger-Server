@@ -44,7 +44,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    await client.connect();
+    // await client.connect();
     // user data
     const db = client.db('Assingment-11');
     const userCollection = db.collection('userData');
@@ -255,7 +255,7 @@ async function run() {
     });
 
 
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
@@ -265,3 +265,4 @@ async function run() {
 run().catch(console.dir);
 
 // nodemon index.js
+
