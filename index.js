@@ -169,7 +169,7 @@ async function run() {
     // All data
     app.get('/alldata', async (req, res) => {
       try {
-        const cursor = onerCollection.find();
+        const cursor = onerCollection.find({}).sort({ _id: -1 });
         const result = await cursor.toArray();
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.send(result);
@@ -180,11 +180,11 @@ async function run() {
     });
 
 
-    // MongoDB limit
+    // resent blog post
     app.get('/limited-data', async (req, res) => {
-      const limit = parseInt(req.query.limit) || 6;
+      const limit = parseInt(req.query.limit) || 4;
       try {
-        const cursor = onerCollection.find().limit(limit);
+        const cursor = onerCollection.find({}).sort({_id:-1}).limit(limit);
         const result = await cursor.toArray();
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.send(result);
