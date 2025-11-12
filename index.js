@@ -1,11 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const connectDB = require("./DB/mongodb");
 const port = process.env.PORT || 5222;
 const app = express();
-
 
 
 app.use(cors());
@@ -23,7 +21,7 @@ connectDB().then((collections) => {
   const comment = require("./src/comment")(collections);
   const love = require("./src/love")(collections);
   const user = require("./src/user")(collections);
-  
+
 
   app.use(blog);
   app.use(comment);
