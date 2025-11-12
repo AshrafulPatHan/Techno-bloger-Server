@@ -7,11 +7,11 @@ module.exports = (collections) => {
     // post user data (name email)
     router.post('/user-data', async (req, res) => {
         try {
-            const name = req.body.name;
-            const email = req.body.email;
-            const photoURL = req.body.photoURL;
+            // get dat from frontend
+            const {name,email,photoURL} = req.body;
             const User_data = {name,email,photoURL,watchlists:[],dashboard:[{Portfolio:"",facebook:" ",github:" ",x:" ",followers:0,following:0,baner:"https://i.ibb.co.com/MVwBCf5/pexels-morningtrain-18104.jpg",aboutme:"Hello"}]}
-            console.log('user data', User_data);
+            console.log('user data', User_data); 
+            // insert the dat on data base
             const result = await User.insertOne(User_data);
             console.log(`A document was inserted with the _id: ${result.insertedId}`);
             res.send(result);

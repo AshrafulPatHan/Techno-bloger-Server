@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const { ObjectId } = require("mongodb");
+
 
 module.exports = (collections) => {
     const { User, Blog } = collections;
-
-
 
     // comment on blog
     router.patch('/comment', async (req, res) => {
@@ -23,7 +23,7 @@ module.exports = (collections) => {
             const updateDoc = {
                 $push: { comments: { Comment, username, userphotoURL, userEmail, date: new Date() } },
             };
-            const result = await onerCollection.updateOne(filter, updateDoc);
+            const result = await Blog.updateOne(filter, updateDoc);
             res.send(result);
         } catch (error) {
             console.error('Error updating comment:', error);
