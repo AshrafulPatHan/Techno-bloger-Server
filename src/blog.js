@@ -5,7 +5,7 @@ module.exports = (collections) => {
     const { User, Blog } = collections;
 
     // post blog
-    app.post('/postblog', async (req, res) => {
+    router.post('/postblog', async (req, res) => {
         const addata = req.body;
         console.log('All Data-------------', addata);
 
@@ -20,7 +20,7 @@ module.exports = (collections) => {
     });
 
     // get all blog data
-    app.get('/alldata', async (req, res) => {
+    router.get('/alldata', async (req, res) => {
         try {
             const cursor = onerCollection.find({}).sort({ _id: -1 });
             const result = await cursor.toArray();
@@ -33,7 +33,7 @@ module.exports = (collections) => {
     });
 
     // get resent blog post
-    app.get('/limited-data', async (req, res) => {
+    router.get('/limited-data', async (req, res) => {
         const limit = parseInt(req.query.limit) || 4;
         try {
             const cursor = onerCollection.find({}).sort({ _id: -1 }).limit(limit);
@@ -47,7 +47,7 @@ module.exports = (collections) => {
     });
 
     //  Featured Blogs / populer blog
-    app.get('/featured-blogs', async (req, res) => {
+    router.get('/featured-blogs', async (req, res) => {
         const limit = parseInt(req.query.limit) || 10;
         try {
             const cursor = onerCollection.find().limit(limit);
@@ -61,7 +61,7 @@ module.exports = (collections) => {
     });
 
     // update blog data
-    app.put('/update/:id', async (req, res) => {
+    router.put('/update/:id', async (req, res) => {
         const id = req.params.id;
         const filter = { _id: new ObjectId(id) };
         const updateData = req.body;

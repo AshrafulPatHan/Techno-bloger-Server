@@ -5,7 +5,7 @@ module.exports = (collections) => {
     const { User, Blog } = collections;
 
     // gat watchLists data
-    app.post('/watchListsdata', async (req, res) => {
+    router.post('/watchListsdata', async (req, res) => {
         const sendEmail = req.body.email;
         try {
             const cursor = wicCollection.find({ userEmail: sendEmail });
@@ -19,7 +19,7 @@ module.exports = (collections) => {
     });
 
     // post watchLists data
-    app.post('/watchLists', async (req, res) => {
+    router.post('/watchLists', async (req, res) => {
         const addatas = req.body;
         console.log('All watchLists-------------', addatas);
 
@@ -34,7 +34,7 @@ module.exports = (collections) => {
     });
 
     // delet watchlist
-    app.delete('/watchListsdata/:id', async (req, res) => {
+    router.delete('/watchListsdata/:id', async (req, res) => {
         const id = req.params.id;
         try {
             const result = await wicCollection.deleteOne({ _id: new ObjectId(id) }); // ObjectId ব্যবহার করুন

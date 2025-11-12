@@ -7,7 +7,7 @@ module.exports = (collections) => {
 
 
     // comment on blog
-    app.patch('/comment', async (req, res) => {
+    router.patch('/comment', async (req, res) => {
         const { Comment, username, userEmail, userphotoURL, _id } = req.body;
 
         if (!Comment || !username || !userEmail || !userphotoURL || !_id) {
