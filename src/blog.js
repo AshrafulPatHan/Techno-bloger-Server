@@ -87,6 +87,27 @@ module.exports = (collections) => {
         }
     });
 
+    router.delete('/user/blog/:id', async (req, res) => {
+        try {
+            const id = req.params.id;
+            const UserMail_ = req.body.email;
+
+            if (!id) return res.status(400).send({ message: "❌ ID not provided" }); // check the id
+
+            const DeleteBlog = await Blog.deleteOne({ _id: new ObjectId(id) }); // delete the blog
+
+            // check the blog is delete or not
+            if (DeleteBlog.deletedCount > 0) {
+                res.status(200).send({ message: "✅ blog deleted successfully" });
+            } else {
+                res.status(404).send({ message: "❌ blog not found" });
+            }
+        } catch (error) {
+            console.error('Error retrieving limited data:', error);
+            res.status(500).send({ message: 'Internal Server Error' });
+        }
+    })
+
 
     return router;
 };
