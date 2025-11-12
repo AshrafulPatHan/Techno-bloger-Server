@@ -12,7 +12,7 @@ module.exports = (collections) => {
             const photoURL = req.body.photoURL;
             const User_data = {name,email,photoURL,watchlists:[],dashboard:[{Portfolio:"",facebook:" ",github:" ",x:" ",followers:0,following:0,baner:"https://i.ibb.co.com/MVwBCf5/pexels-morningtrain-18104.jpg",aboutme:"Hello"}]}
             console.log('user data', User_data);
-            const result = await userDataCollection.insertOne(User_data);
+            const result = await User.insertOne(User_data);
             console.log(`A document was inserted with the _id: ${result.insertedId}`);
             res.send(result);
         } catch (error) {
@@ -21,7 +21,16 @@ module.exports = (collections) => {
         }
     });
     // get user data
-    
+    router.post('/get-user',async (req,res)=>{
+        try{
+            const email = req.body.email;
+            const userData = await User.findOne({email:email})
+            res.status(200).send(userData)
+        }catch(error){
+            console.error('error find data:',error);
+            res.status(500).send({message: 'error is comming on find user'})
+        }
+    })
 
     return router;
 };
