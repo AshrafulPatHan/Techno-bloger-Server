@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { ObjectId } = require("mongodb");
 
 module.exports = (collections) => {
     const { User, Blog } = collections;
@@ -81,6 +82,7 @@ module.exports = (collections) => {
 
             const result = await Blog.updateOne(filter, updateDoc, { upsert: true });
             res.status(200).send(result);
+            console.log(result)
         } catch (error) {
             console.error('Error retrieving limited data:', error);
             res.status(500).send({ message: 'Internal Server Error' });
