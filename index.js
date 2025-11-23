@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
   res.send('Server is running in vartion 1.2')
 })
 
+console.log("Database on : "+process.env.DB_USER)
 
 
 connectDB().then((collections) => {

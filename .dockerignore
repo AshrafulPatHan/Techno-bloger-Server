@@ -1,0 +1,16 @@
+# Ignore common development files and directories
+.git
+.gitignore
+node_modules/
+temp/
+logs/
+*.log
+*.tmp
+.env
+
+# Exclude all markdown files
+*.md
+
+# Include a specific file even if it matches an ignore pattern
+!README.md
+vercel.json
