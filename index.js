@@ -11,7 +11,7 @@ app.use(express.json());
 
 
 app.get('/', (req, res) => {
-  res.send('Server is running in vartion 1.2')
+  res.send('Server is running in vartion 1.2.1')
 })
 
 console.log("Database on : "+process.env.DB_USER)
